@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 public class BlockingJDBCRunner {
-    public static final int totalInsertingRow = 10000;
+    private static final int totalInsertingRow = 10000;
     private String url = "jdbc:postgresql://localhost:5432/leizheng";
     private String user = "postgres";
     private String password = "postgres";
@@ -20,7 +20,7 @@ public class BlockingJDBCRunner {
         BlockingJDBCRunner service = new BlockingJDBCRunner();
         service.clearTestData();
         var currenttime = System.currentTimeMillis();
-        final int threadCount = 1;
+        final int threadCount = 10;
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
         List<Future> futures = new ArrayList();
         for (int i = 0; i < threadCount; i++) {
